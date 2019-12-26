@@ -5,16 +5,18 @@ const context = canvas.getContext("2d");
 
 const bg = new Image();
 const meteor = new Image();
-const ship = new Image();
+const monster = new Image();
 
 bg.src = "images/bg.png";
 meteor.src = "images/meteor.png";
-ship.src = "images/spaceship.png";
+monster.src = "images/monster.png";
 
 //Variables
 let gravity = 2;
-let shipX = 124;
-let distance = 100;
+let monsterX = 106;
+let distance = 120;
+let score = 0;
+let direction = 25;
 
 let meteors = [];
 
@@ -22,6 +24,30 @@ meteors[0] = {
   x: 0,
   y: 0
 };
+
+// On key down
+
+function onKeyDown(event) {
+  switch (event.key) {
+    case "ArrowRight":
+      monsterX += direction;
+      break;
+    case "ArrowLeft":
+      monsterX -= direction;
+
+      break;
+    case "65":
+      monsterX -= direction;
+
+      break;
+    case "68":
+      monsterX += direction;
+
+      break;
+    default:
+      break;
+  }
+}
 
 //Draw
 
@@ -39,7 +65,8 @@ function draw() {
       });
     }
   }
-  context.drawImage(ship, shipX, 450, 40, 40);
+  window.addEventListener("keydown", onKeyDown);
+  context.drawImage(monster, monsterX, 430, 75, 75);
 
   requestAnimationFrame(draw);
 }
