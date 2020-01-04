@@ -23,7 +23,7 @@ let direction = 36;
 let meteors = [];
 
 meteors[0] = {
-  x: 0,
+  x: 40,
   y: 0
 };
 
@@ -70,6 +70,7 @@ function draw() {
   }
 
   //Hitbox
+
   for (let i = 0; i < meteors.length; i++) {
     if (
       meteors[i].y + 36 >= 430 &&
@@ -83,7 +84,9 @@ function draw() {
       life++;
     }
   }
+
   //Meteors
+
   for (let i = 0; i < meteors.length; i++) {
     context.drawImage(meteor, meteors[i].x, meteors[i].y, 36, 36);
     meteors[i].y += gravity;
@@ -91,7 +94,7 @@ function draw() {
     //New Meteor
     if (meteors[i].y == distance) {
       meteors.push({
-        x: Math.floor(Math.random() * canvas.width),
+        x: Math.floor(Math.random() * (canvas.width - 40 - 40) + 40),
         y: 0
       });
     }
